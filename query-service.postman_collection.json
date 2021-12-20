@@ -1,0 +1,38 @@
+{
+	"info": {
+		"_postman_id": "9602fa5f-163e-4fd8-8c32-16887e4e64da",
+		"name": "query-service",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "user",
+			"item": [
+				{
+					"name": "Fetch user information",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8055/api/v1/user/john",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8055",
+							"path": [
+								"api",
+								"v1",
+								"user",
+								"john"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"protocolProfileBehavior": {}
+}

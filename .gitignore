@@ -1,0 +1,34 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# Docker
+*.tar
+
+# dependencies
+node_modules
+
+# testing
+coverage
+
+# production
+build
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+
+### Netbeans ###
+nbproject
+
+# misc
+.DS_Store
+logs
+.env
+
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+### VS Code ###
+.vscode
