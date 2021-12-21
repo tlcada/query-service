@@ -8,6 +8,10 @@ The basic commands are listed below.
 - DATABASE.PG.PASSWORD=
 - DATABASE.PG.HOST=
 
+## Create database
+
+You can find the schemas in the schema folder.
+
 ## Basic commands
 
 | Command       | Description |

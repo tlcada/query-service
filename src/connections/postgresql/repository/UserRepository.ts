@@ -20,7 +20,7 @@ class UserRepository {
                 const result = results.rows[0];
                 return {
                     address: result["address"],
-                    fullName: result["fullName"],
+                    fullName: `${result["first_name"]} ${result["last_name"]}`,
                 };
             }
 
