@@ -1,6 +1,6 @@
 import { DatabaseException } from "../../../exceptions";
-import { pgConnectPool } from "../connect";
 import { LogBuilder, LogFormatter } from "../../../logger";
+import { pgConnectPool } from "../connect";
 
 export type UserInfo = {
     readonly address: string;

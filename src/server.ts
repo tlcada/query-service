@@ -11,7 +11,7 @@ import * as path from "path";
 import { config } from "./config";
 import { Env } from "./environment/Profile";
 import { LogBuilder, LogFormatter } from "./logger";
-import { routes } from "./routes";
+import api from "./api";
 import { corsDefaultOptions } from "./security";
 import { customMetrics } from "./utils";
 
@@ -46,7 +46,7 @@ app.use(promBundle({
 }));
 
 // All routes
-app.use(config.api.path, routes);
+app.use(config.api.path, api);
 
 // Check that application is not running yet. Http tests need this.
 if (!module.parent) {

@@ -1,9 +1,9 @@
 import express from "express";
 import { param } from "express-validator";
-import { UserHandler, validate } from "../handler";
+import { UserService, validate } from "../services";
 import { LogBuilder, LogFormatter } from "../logger";
 
-const userHandler = new UserHandler();
+const userService = new UserService();
 const router = express.Router();
 const log = LogBuilder.create(module);
 
@@ -13,7 +13,7 @@ router.get("/user/:username", validate([
     const username = req.params.username as string;
 
     try {
-        const userInformation = await userHandler.getUserByUsername(username);
+        const userInformation = await userService.getUserByUsername(username);
         log.info(new LogFormatter("Fetched user information").username(username).write());
         res.json(userInformation);
     } catch (err: any) {

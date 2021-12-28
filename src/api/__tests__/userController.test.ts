@@ -2,7 +2,7 @@ import request from "supertest";
 
 const server = require("../../server");
 
-describe("userRoutes.ts", () => {
+describe("userController.ts", () => {
     describe("# .../v1/user", () => {
         const url = "/api/v1/user";
 

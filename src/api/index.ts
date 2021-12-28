@@ -3,15 +3,15 @@ import basicAuth from "express-basic-auth";
 import swaggerJsdoc from "swagger-jsdoc";
 import swaggerUi from "swagger-ui-express";
 import { config } from "../config";
-import { errorResponse, notFound } from "../handler";
-import userRoutes from "./userRoutes";
+import { errorResponse, notFound } from "../services";
+import userController from "./userController";
 import { apiDocumentation } from "./docs/apidoc";
 
 const router = express.Router();
 const v1 = "/v1";
 
 // Routes
-router.use(v1, userRoutes);
+router.use(v1, userController);
 router.use(v1, swaggerUi.serve);
 
 // Error handler

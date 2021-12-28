@@ -2,7 +2,7 @@ import { UserRepository } from "../connections/postgresql";
 import { UserInfo } from "../connections/postgresql/repository/UserRepository";
 import { EmptyResultsException } from "../exceptions";
 
-class UserHandler {
+class UserService {
 
     private userRepository;
 
@@ -20,4 +20,4 @@ class UserHandler {
     }
 }
 
-export default UserHandler;
+export default UserService;
