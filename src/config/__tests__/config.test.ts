@@ -3,7 +3,7 @@ import config from "../config";
 describe("config.ts", () => {
     it("should match", () => {
         expect(config).toEqual({
-            port: 8077,
+            port: 8055,
             api: {
                 timeoutTimeMinutes: 5,
                 secure: {
