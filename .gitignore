@@ -25,6 +25,7 @@ nbproject
 .DS_Store
 logs
 .env
+other.txt
 
 npm-debug.log*
 yarn-debug.log*
