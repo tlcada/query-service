@@ -1,11 +1,11 @@
 import { DatabaseException } from "../../../../exceptions";
-import UserRepository, { UserInfo } from "../UserRepository";
+import UserRepository, { User } from "../UserRepository";
 
 const userRepository = new UserRepository();
 
 describe("UserRepository.ts", () => {
     it("should return user info with valid username", async () => {
-        const response: UserInfo | null = await userRepository.findUser("john");
+        const response: User | null = await userRepository.findUser("john");
         expect(response).toEqual({
             address: "Kivakatu 34",
             fullName: "John Smith"
@@ -13,7 +13,7 @@ describe("UserRepository.ts", () => {
     });
 
     it("should return null with invalid username", async () => {
-        const response: UserInfo | null = await userRepository.findUser("invalid");
+        const response: User | null = await userRepository.findUser("invalid");
         expect(response).toBeNull();
     });
 

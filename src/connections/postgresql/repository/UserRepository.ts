@@ -2,7 +2,7 @@ import { DatabaseException } from "../../../exceptions";
 import { LogBuilder, LogFormatter } from "../../../logger";
 import { pgConnectPool } from "../connect";
 
-export type UserInfo = {
+export type User = {
     readonly address: string;
     readonly fullName: string;
 }
@@ -11,7 +11,7 @@ const log = LogBuilder.create(module);
 
 class UserRepository {
 
-    async findUser(username: string): Promise<never | UserInfo | null> {
+    async findUser(username: string): Promise<never | User | null> {
         const client = await pgConnectPool();
 
         try {
