@@ -13,9 +13,9 @@ router.get("/user/:username", validate([
     const username = req.params.username as string;
 
     try {
-        const userInformation = await userService.getUserByUsername(username);
+        const user = await userService.getUserByUsername(username);
         log.info(new LogFormatter("Fetched user information").username(username).write());
-        res.json(userInformation);
+        res.json(user);
     } catch (err: any) {
         log.error(new LogFormatter(err.message).write());
         return next(err);

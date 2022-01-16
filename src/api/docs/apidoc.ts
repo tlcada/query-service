@@ -22,6 +22,10 @@ const apiDocumentation = {
         },
         servers: [
             {
+                url: `https://localhost:${config.port}${config.api.path}/v1`,
+                description: "Development server",
+            },
+            {
                 url: `http://localhost:${config.port}${config.api.path}/v1`,
                 description: "Development server",
             },

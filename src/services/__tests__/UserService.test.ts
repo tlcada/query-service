@@ -8,7 +8,12 @@ describe("UserService.ts", () => {
         const response = await userService.getUserByUsername("john");
         expect(response).toEqual({
             address: "Kivakatu 34",
-            fullName: "John Smith"
+            fullName: "John Smith",
+            family: {
+                kids: [{
+                    name: "Janet Weaver"
+                }]
+            }
         });
     });
 

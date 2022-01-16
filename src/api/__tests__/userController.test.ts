@@ -1,6 +1,5 @@
 import request from "supertest";
-
-const server = require("../../server");
+import server from "../../server";
 
 describe("userController.ts", () => {
     describe("# .../v1/user", () => {
@@ -13,7 +12,12 @@ describe("userController.ts", () => {
             expect(res.statusCode).toEqual(200);
             expect(res.body).toEqual({
                 address: "Kivakatu 34",
-                fullName: "John Smith"
+                fullName: "John Smith",
+                family: {
+                    kids: [{
+                        name: "Janet Weaver"
+                    }]
+                }
             });
         });
 

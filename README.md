@@ -7,12 +7,15 @@ The basic commands are listed below.
 - DATABASE.PG.USER=
 - DATABASE.PG.PASSWORD=
 - DATABASE.PG.HOST=
+- MOCK_DATA_ON=false
 
 ## Create database
 
 You can find the schemas in the schema folder.
 
 ## Basic commands
+
+HTTPS is enabled by default. If you want to use HTTP connection go to config.ts file.
 
 | Command       | Description |
 |:--------------| :--- |

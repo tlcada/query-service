@@ -29,6 +29,25 @@ const getUser = {
                             fullName: {
                                 type: "string",
                                 example: "John Snow",
+                            },
+                            family: {
+                                type: "object",
+                                properties: {
+                                    kids: {
+                                        type: "array",
+                                        items: {
+                                            type: "object",
+                                            properties: {
+                                                name: {
+                                                    type: "string"
+                                                }
+                                            },
+                                            example: {
+                                                name: "Adam Snow"
+                                            }
+                                        },
+                                    }
+                                }
                             }
                         },
                     },

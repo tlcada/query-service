@@ -1,11 +1,11 @@
-import { EnvSpecificTypes, TheConfig } from "./ConfigTypes";
+import { EnvSpecificTypes, Config } from "./ConfigType";
 
 export const serviceName = "query-service";
 
-const config: TheConfig = {
+const config: Config = {
     port: 8055,
+    useHttpsServer: true,
     api: {
-        timeoutTimeMinutes: 5,
         secure: {
             basicAuth: {
                 general: { "root": "password" },
@@ -55,6 +55,9 @@ function envSpecificConf(): EnvSpecificTypes {
             client: {
                 url: "http://localhost:3000"
             },
+            reqres: {
+                url: "https://reqres.in/api",
+            }
         }
     };
 }

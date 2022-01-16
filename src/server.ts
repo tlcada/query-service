@@ -1,12 +1,15 @@
 // Enable environment variable support
-require("dotenv").config();
+import dotenv from "dotenv";
+dotenv.config();
 
+import https from "https";
 import cookieParser from "cookie-parser";
 import cors from "cors";
 import express, { Express, Request, Response } from "express";
 import basicAuth from "express-basic-auth";
 import promBundle from "express-prom-bundle";
 import mustache from "mustache-express";
+import * as fs from "fs";
 import * as path from "path";
 import { config } from "./config";
 import { Env } from "./environment/Profile";
@@ -50,11 +53,20 @@ app.use(config.api.path, controller);
 
 // Check that application is not running yet. Http tests need this.
 if (!module.parent) {
-    app.listen(config.port, () => {
-        log.info(new LogFormatter(`Server started on port: ${config.port}. NODE_ENV: ${ Env }`).write());
-    });
+    if (config.useHttpsServer) {
+         https.createServer({
+             key: fs.readFileSync(path.join(__dirname, "config", "keystore", "query_service.key")),
+             cert: fs.readFileSync(path.join(__dirname, "config", "keystore", "query_service.cert")),
+        }, app).listen(config.port, () => {
+            log.info(new LogFormatter(`Server started on port: ${config.port}. HTTPS enabled: true. NODE_ENV: ${ Env }`).write());
+        });
+    } else {
+        app.listen(config.port, () => {
+            log.info(new LogFormatter(`Server started on port: ${config.port}. HTTPS enabled: false. NODE_ENV: ${ Env }`).write());
+        });
+    }
 
     customMetrics();
 }
 
-module.exports = app;
+export default app;

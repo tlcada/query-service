@@ -5,6 +5,11 @@ import { pgConnectPool } from "../connect";
 export type User = {
     readonly address: string;
     readonly fullName: string;
+    readonly family: {
+        readonly kids: Array<{
+            readonly name: string;
+        }> | [];
+    } | undefined;
 }
 
 const log = LogBuilder.create(module);
@@ -21,6 +26,7 @@ class UserRepository {
                 return {
                     address: result["address"],
                     fullName: `${result["first_name"]} ${result["last_name"]}`,
+                    family: undefined,
                 };
             }
 

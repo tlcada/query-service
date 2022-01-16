@@ -5,10 +5,10 @@ type BodyParserTypes = {
 
 type BasicAuthOptions = { [username: string]: string };
 
-export type TheConfig = {
+export type Config = {
     readonly port: number;
+    readonly useHttpsServer: boolean;
     readonly api: {
-        readonly timeoutTimeMinutes: number;
         readonly secure: {
             readonly basicAuth: {
                 readonly general: BasicAuthOptions;
@@ -51,6 +51,9 @@ export type EnvSpecificTypes = {
     };
     readonly services: {
         readonly client: {
+            readonly url: string;
+        };
+        readonly reqres: {
             readonly url: string;
         };
     };

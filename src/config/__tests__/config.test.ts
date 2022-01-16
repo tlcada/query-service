@@ -4,8 +4,8 @@ describe("config.ts", () => {
     it("should match", () => {
         expect(config).toEqual({
             port: 8055,
+            useHttpsServer: true,
             api: {
-                timeoutTimeMinutes: 5,
                 secure: {
                     basicAuth: {
                         general: { "root": "password" },
@@ -47,6 +47,9 @@ describe("config.ts", () => {
                     client: {
                         url: config.envSpecific.services.client.url
                     },
+                    reqres: {
+                        url: "https://reqres.in/api",
+                    }
                 }
             }
         });

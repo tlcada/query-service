@@ -8,7 +8,8 @@ describe("UserRepository.ts", () => {
         const response: User | null = await userRepository.findUser("john");
         expect(response).toEqual({
             address: "Kivakatu 34",
-            fullName: "John Smith"
+            fullName: "John Smith",
+            family: undefined
         });
     });
 
