@@ -58,11 +58,11 @@ if (!module.parent) {
              key: fs.readFileSync(path.join(__dirname, "config", "keystore", "query_service.key")),
              cert: fs.readFileSync(path.join(__dirname, "config", "keystore", "query_service.cert")),
         }, app).listen(config.port, () => {
-            log.info(new LogFormatter(`Server started on port: ${config.port}. HTTPS enabled: true. NODE_ENV: ${ Env }`).write());
+            log.info(new LogFormatter(`Server started on port: ${config.port}. HTTPS enabled: true. NODE_ENV: ${Env}`).write());
         });
     } else {
         app.listen(config.port, () => {
-            log.info(new LogFormatter(`Server started on port: ${config.port}. HTTPS enabled: false. NODE_ENV: ${ Env }`).write());
+            log.info(new LogFormatter(`Server started on port: ${config.port}. HTTPS enabled: false. NODE_ENV: ${Env}`).write());
         });
     }
 
