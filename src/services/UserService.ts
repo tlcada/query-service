@@ -26,9 +26,8 @@ class UserService {
 
         const response: GeneralResponseHelper = await generalResponseHelper(() => {
             const mockData = new MockDataHelper(mockDataConfig.reqresAPI.fetchUser, { data: { first_name: "John", last_name: "Smith" } }, "json");
-            const headers = new Headers({ "Content-Type": "application/json" });
             // Always fetch the same user because this is just an example
-            return get(`${config.envSpecific.services.reqres.url}/users/2`, headers, mockData);
+            return get(`${config.envSpecific.services.reqres.url}/users/2`, new Headers({ "Content-Type": "application/json" }), mockData);
         });
 
         if (response.successResponse) {
