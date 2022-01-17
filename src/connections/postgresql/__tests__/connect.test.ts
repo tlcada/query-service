@@ -3,13 +3,21 @@ import { config } from "../../../config";
 import { DatabaseException } from "../../../exceptions";
 import { pgConnectPool } from "../connect";
 
+export function isPgFireUp(): string {
+    return config.envSpecific.databases.pg.host;
+}
+
+export function itIf_pgIsFireUp(): jest.It {
+    return isPgFireUp() ? it : it.skip;
+}
+
 describe("connect.ts", () => {
-    it("should connect with valid default credentials", async () => {
+    itIf_pgIsFireUp()("should connect with valid default credentials", async () => {
         const client = await pgConnectPool();
         expect(client).toMatchObject({ "_connected": true });
     });
 
-    it("should connect with valid external credentials", async () => {
+    itIf_pgIsFireUp()("should connect with valid external credentials", async () => {
         const client = await pgConnectPool({
             host: config.envSpecific.databases.pg.host,
             user: config.envSpecific.databases.pg.user,
@@ -19,7 +27,7 @@ describe("connect.ts", () => {
         expect(client).toMatchObject({ "_connected": true });
     });
 
-    it("should throw error with wrong external credentials", async () => {
+    itIf_pgIsFireUp()("should throw error with wrong external credentials", async () => {
         const poolConfig: PoolConfig = {
             host: config.envSpecific.databases.pg.host,
             user: config.envSpecific.databases.pg.user,

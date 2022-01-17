@@ -10,8 +10,8 @@ export default {
   testTimeout: 10000,
   coverageThreshold: {
     global: {
-      branches: 75, // Conditional statements create branches of code which may not be executed (e.g. if/else). This metric tells you how many of your branches have been executed.
-      functions: 80,
+      branches: 70, // Conditional statements create branches of code which may not be executed (e.g. if/else). This metric tells you how many of your branches have been executed.
+      functions: 65,
       lines: 80,
     }
   }

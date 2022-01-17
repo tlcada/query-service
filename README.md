@@ -39,4 +39,4 @@ Some endpoints are protected with basic auth. You can find the username and pass
 
 ## Tests
 
-Make sure the database connection is OK before running the tests. App does not use mock data responses. 
+If you do not define DATABASE.PG.HOST environment variable or it is empty, some postgresql tests will be skipped or mock data is used because then the PG database is probably not configured.

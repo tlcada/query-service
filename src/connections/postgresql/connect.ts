@@ -18,7 +18,8 @@ async function pgConnectPool(overridePoolConfig?: PoolConfig): Promise<PoolClien
     const pool: PoolConfig = overridePoolConfig ? overridePoolConfig : poolConfig;
     return new Pool(pool).connect().catch((err: Error) => {
         log.error(new LogFormatter(err.message).write());
-        throw new DatabaseException("Database connection failed."); // Increase manageability with your own error
+        // Increase manageability with your own error
+        throw new DatabaseException({ own: "Database connection failed.", rawError: err.message });
     });
 }
 

@@ -1,11 +1,21 @@
 import request from "supertest";
 import server from "../../server";
+import UserRepository from "../../connections/postgresql/repository/UserRepository";
+import { isPgFireUp } from "../../connections/postgresql/__tests__/connect.test";
 
 describe("userController.ts", () => {
     describe("# .../v1/user", () => {
         const url = "/api/v1/user";
 
         it("should return 200 with the right API call", async () => {
+            if (!isPgFireUp()) {
+                jest.spyOn(UserRepository.prototype, "findUser").mockImplementation(() => Promise.resolve({
+                    address: "Kivakatu 34",
+                    fullName: "John Smith",
+                    family: undefined
+                }));
+            }
+
             const res = await request(server.listen())
                 .get(`${url}/john`);
 
@@ -22,6 +32,10 @@ describe("userController.ts", () => {
         });
 
         it("should return 404 with not exist username", async () => {
+            if (!isPgFireUp()) {
+                jest.spyOn(UserRepository.prototype, "findUser").mockImplementation(() => Promise.resolve(null));
+            }
+
             const res = await request(server.listen())
                 .get(`${url}/not_exist`);
 
