@@ -16,8 +16,7 @@ describe("userController.ts", () => {
                 }));
             }
 
-            const res = await request(server.listen())
-                .get(`${url}/john`);
+            const res = await request(server).get(`${url}/john`);
 
             expect(res.statusCode).toEqual(200);
             expect(res.body).toEqual({
@@ -36,8 +35,7 @@ describe("userController.ts", () => {
                 jest.spyOn(UserRepository.prototype, "findUser").mockImplementation(() => Promise.resolve(null));
             }
 
-            const res = await request(server.listen())
-                .get(`${url}/not_exist`);
+            const res = await request(server).get(`${url}/not_exist`);
 
             expect(res.statusCode).toEqual(404);
             expect(res.body).toMatchObject({

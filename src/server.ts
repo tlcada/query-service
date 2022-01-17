@@ -2,7 +2,7 @@
 import dotenv from "dotenv";
 dotenv.config();
 
-import https from "https";
+import https, { Server } from "https";
 import cookieParser from "cookie-parser";
 import cors from "cors";
 import express, { Express, Request, Response } from "express";
@@ -12,7 +12,7 @@ import mustache from "mustache-express";
 import * as fs from "fs";
 import * as path from "path";
 import { config } from "./config";
-import { Env } from "./environment/Profile";
+import { Env, test } from "./environment/Profile";
 import { LogBuilder, LogFormatter } from "./logger";
 import { controller } from "./api";
 import { corsDefaultOptions } from "./security";
@@ -51,22 +51,23 @@ app.use(promBundle({
 // All routes
 app.use(config.api.path, controller);
 
-// Check that application is not running yet. Http tests need this.
-if (!module.parent) {
+if (!test) {
     if (config.useHttpsServer) {
-         https.createServer({
-             key: fs.readFileSync(path.join(__dirname, "config", "keystore", "query_service.key")),
-             cert: fs.readFileSync(path.join(__dirname, "config", "keystore", "query_service.cert")),
-        }, app).listen(config.port, () => {
-            log.info(new LogFormatter(`Server started on port: ${config.port}. HTTPS enabled: true. NODE_ENV: ${Env}`).write());
+        const httpsApp: Server = https.createServer({
+            key: fs.readFileSync(path.join(__dirname, "config", "keystore", "query_service.key")),
+            cert: fs.readFileSync(path.join(__dirname, "config", "keystore", "query_service.cert")),
+        }, app);
+
+        httpsApp.listen(config.port, () => {
+            log.info(new LogFormatter(`Server started on port: ${ config.port }. HTTPS enabled: true. NODE_ENV: ${ Env }`).write());
         });
     } else {
         app.listen(config.port, () => {
-            log.info(new LogFormatter(`Server started on port: ${config.port}. HTTPS enabled: false. NODE_ENV: ${Env}`).write());
+            log.info(new LogFormatter(`Server started on port: ${ config.port }. HTTPS enabled: false. NODE_ENV: ${ Env }`).write());
         });
     }
-
-    customMetrics();
 }
+
+customMetrics();
 
 export default app;
