@@ -16,7 +16,7 @@
   "scripts": {
     "build": "tsc",
     "start": "nodemon",
-    "test": "jest",
+    "test": "jest --ci",
     "test-watch": "jest --watch",
     "lint": "eslint . --ext .ts"
   },
