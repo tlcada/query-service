@@ -66,8 +66,8 @@ if (!test) {
             log.info(new LogFormatter(`Server started on port: ${ config.port }. HTTPS enabled: false. NODE_ENV: ${ Env }`).write());
         });
     }
-}
 
-customMetrics();
+    customMetrics();
+}
 
 export default app;
