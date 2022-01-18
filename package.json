@@ -16,7 +16,7 @@
   "scripts": {
     "build": "tsc",
     "start": "nodemon",
-    "test": "jest --ci --forceExit",
+    "test": "jest --ci --forceExit --detectOpenHandles",
     "test-watch": "jest --watch",
     "lint": "eslint . --ext .ts"
   },
