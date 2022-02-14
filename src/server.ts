@@ -14,7 +14,7 @@ import * as path from "path";
 import { config } from "./config";
 import { Env, test } from "./environment/Profile";
 import { LogBuilder, LogFormatter } from "./logger";
-import { controller } from "./api";
+import { controller } from "./controllers";
 import { corsDefaultOptions } from "./security";
 import { customMetrics } from "./utils";
 

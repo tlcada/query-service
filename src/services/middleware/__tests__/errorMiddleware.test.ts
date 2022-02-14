@@ -1,9 +1,9 @@
 import { query } from "express-validator";
 import { GeneralException } from "../../../exceptions";
-import { errorResponse, notFound, validate } from "../errorHandler";
+import { errorResponse, notFound, validate } from "../errorMiddleware";
 import { getMockReq, getMockRes } from "@jest-mock/express";
 
-describe("errorHandler.ts", () => {
+describe("errorMiddleware.ts", () => {
     describe("errorResponse(...)", () => {
         it("should return errorResponse JSON", async () => {
             const req = getMockReq();

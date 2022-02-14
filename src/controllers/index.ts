@@ -26,4 +26,4 @@ router.get(v1, basicAuth({
 // Handle 404 error (ALWAYS Keep this as the last route)
 router.use(notFound);
 
-export default router;
+export { router as controller };

@@ -1,1 +1,1 @@
-export { errorResponse, validate, notFound } from "./errorHandler";
+export { errorResponse, validate, notFound } from "./errorMiddleware";
