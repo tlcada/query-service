@@ -33,6 +33,13 @@ async function _fetch(mockData: MockDataHelper, url: string, init: RequestInit, 
 
     return fetch(url, {
         agent: protocol,
+        signal: timeout(10).signal,
         ...init,
     }).then((response: Response) => response);
 }
+
+const timeout = (time: number) => {
+    const controller = new AbortController();
+    setTimeout(() => controller.abort(), time * 1000);
+    return controller;
+};
