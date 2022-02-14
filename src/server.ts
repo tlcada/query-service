@@ -53,12 +53,7 @@ app.use(config.api.path, controller);
 
 if (!test) {
     if (config.useHttpsServer) {
-        const httpsApp: Server = https.createServer({
-            key: fs.readFileSync(path.join(__dirname, "config", "keystore", "query_service.key")),
-            cert: fs.readFileSync(path.join(__dirname, "config", "keystore", "query_service.cert")),
-        }, app);
-
-        httpsApp.listen(config.port, () => {
+        createHttpsApp(app).listen(config.port, () => {
             log.info(new LogFormatter(`Server started on port: ${ config.port }. HTTPS enabled: true. NODE_ENV: ${ Env }`).write());
         });
     } else {
@@ -70,4 +65,12 @@ if (!test) {
     customMetrics();
 }
 
+function createHttpsApp(app: Express): Server {
+    return https.createServer({
+        key: fs.readFileSync(path.join(__dirname, "config", "keystore", "query_service.key")),
+        cert: fs.readFileSync(path.join(__dirname, "config", "keystore", "query_service.cert")),
+    }, app);
+}
+
+export { createHttpsApp };
 export default app;
